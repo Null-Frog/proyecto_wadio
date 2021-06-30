@@ -1,0 +1,25 @@
+{
+  "name": "proyecto_wadio",
+  "version": "1.0.0",
+  "description": "- Un bot de Whatsapp que cuando reciba un audio lo convierta en texto.\r - Cada vez que reciba un audio enviar un mensaje de por favor no me envíes más audios.",
+  "main": "index.js",
+  "dependencies": {
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.12.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Null-Frog/proyecto_wadio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Null-Frog/proyecto_wadio/issues"
+  },
+  "homepage": "https://github.com/Null-Frog/proyecto_wadio#readme"
+}
