@@ -13,12 +13,17 @@ client.on('ready', () => {
 
 client.initialize();
 
-client.on('message', message => {
-	console.log(message.body);
-});
+/**
+ * Cada vez que el cliente reciba un archivo "media", se le contestará con un mensaje
+ */
+client.on('message', async msg => {
+    if(msg.hasMedia) {
+        const media = await msg.downloadMedia();
 
-client.on('message', message => {
-	if(message.body === 'ruben') {
-		message.reply('Deja de molestar por favor');
-	}
+		if(media.mimetype == "audio/ogg; codecs=opus"){
+			msg.reply('No me mandéis audios, por favor');
+		}
+        // do something with the media data here
+		console.log(media);
+    }
 });
