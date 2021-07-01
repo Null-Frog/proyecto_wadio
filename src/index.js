@@ -14,7 +14,7 @@ client.on('ready', () => {
 client.initialize();
 
 /**
- * Cada vez que el cliente reciba un archivo "media", se le contestará con un mensaje
+ * Cada vez que el cliente reciba un archivo de tipo audio, se le contestará con un mensaje
  */
 client.on('message', async msg => {
     if(msg.hasMedia) {
@@ -23,7 +23,5 @@ client.on('message', async msg => {
 		if(media.mimetype == "audio/ogg; codecs=opus"){
 			msg.reply('No me mandéis audios, por favor');
 		}
-        // do something with the media data here
-		console.log(media);
     }
 });
