@@ -7,9 +7,12 @@
     "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.12.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "dev": "nodemon -e ts --exec \"npm start\""
   },
   "repository": {
     "type": "git",
