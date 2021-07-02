@@ -1,5 +1,5 @@
 const qrcode = require('qrcode-terminal');
-
+require('dotenv').config()
 const { Client } = require('whatsapp-web.js');
 const client = new Client();
 
@@ -21,9 +21,9 @@ const { IamAuthenticator } = require('ibm-watson/auth');
 
 const speechToText = new SpeechToTextV1({
   authenticator: new IamAuthenticator({
-    apikey: 'VVWoTlBRDrbakknlv7hc3DKITgJKnQTFD0A2OkdaNAzp'
+    apikey: process.env.APIKEY
   }),
-  serviceUrl: 'https://api.eu-gb.speech-to-text.watson.cloud.ibm.com/instances/73c0a8ac-d262-4bbd-a737-4148abd80f07'
+  serviceUrl: process.env.URL
 });
 
 const params = {
