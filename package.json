@@ -4,10 +4,12 @@
   "description": "- Un bot de Whatsapp que cuando reciba un audio lo convierta en texto.\r - Cada vez que reciba un audio enviar un mensaje de por favor no me envíes más audios.",
   "main": "index.js",
   "dependencies": {
+    "ibm-watson": "^6.1.1",
     "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.12.6"
   },
   "devDependencies": {
+    "dotenv": "^10.0.0",
     "nodemon": "^2.0.9"
   },
   "scripts": {

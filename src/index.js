@@ -25,3 +25,25 @@ client.on('message', async msg => {
 		}
     }
 });
+
+// Speech to text
+const fs = require('fs');
+
+const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
+const { IamAuthenticator } = require('ibm-watson/auth');
+
+const speechToText = new SpeechToTextV1({
+  authenticator: new IamAuthenticator({
+    apikey: process.env.SPEECH_TO_TEXT_IAM_APIKEY,
+  }),
+  serviceUrl: process.env.SPEECH_TO_TEXT_URL,
+});
+
+const params = {
+    contentType: 'audio/ogg;codecs=opus',
+    model: 'ES_BroadbandModel, es-',
+    wordConficence: true
+};
+
+const recognizeStream = speechToText.recognizeUsingWebSocket(params);
+fs.createReadStream('../sound.wav').pipe(recognizeStream);
