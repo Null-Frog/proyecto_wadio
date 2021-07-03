@@ -44,6 +44,14 @@ function onEvent(name, event) {
   console.log(name, JSON.stringify(event, null, 2));
 };
 
+function resolveAfter3Seconds(x) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(x);
+    }, 3000);
+  });
+}
+
 /**
  * Cada vez que el cliente reciba un archivo de tipo audio, se le contestará con un mensaje
  */
@@ -62,9 +70,9 @@ client.on('message', async msg => {
       /**
        * Lee el archivo de audio y lo responde con un mensaje
        */
-      function leerAudioResponder() {
-        const mensajeLeido = fs.createReadStream(process.env.AUDIO).pipe(recognizeStream);
-        console.log(mensajeLeido);
+      async function leerAudioResponder() {
+        const transcribirMensaje = fs.createReadStream(process.env.AUDIO).pipe(recognizeStream);
+        await resolveAfter3Seconds(transcribirMensaje);
         console.log("[!] Audio leído");
         msg.reply('No me mandéis audios, por favor');
       }
