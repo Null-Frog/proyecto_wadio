@@ -1,14 +1,14 @@
 const qrcode = require('qrcode-terminal');
-require('dotenv').config()
+require('dotenv').config();
 const { Client } = require('whatsapp-web.js');
 const client = new Client();
 
 client.on('qr', qr => {
-    qrcode.generate(qr, {small: true});
+  qrcode.generate(qr, { small: true });
 });
 
 client.on('ready', () => {
-    console.log('Client is ready!');
+  console.log('Client is ready!');
 });
 
 client.initialize();
@@ -27,56 +27,56 @@ const speechToText = new SpeechToTextV1({
 });
 
 const params = {
-    objectMode: true,
-    contentType: 'audio/ogg;codecs=opus',
-    model: 'es-ES_NarrowbandModel',
-    wordConficence: true
+  objectMode: true,
+  contentType: 'audio/ogg;codecs=opus',
+  model: 'es-ES_NarrowbandModel',
+  wordConficence: true
 };
 
 const recognizeStream = speechToText.recognizeUsingWebSocket(params);
 
-recognizeStream.on('data', function(event) { onEvent('Data:', event); });
-recognizeStream.on('error', function(event) { onEvent('Error:', event); });
-recognizeStream.on('close', function(event) { onEvent('Close:', event); });
+recognizeStream.on('data', function (event) { onEvent('Data:', event); });
+recognizeStream.on('error', function (event) { onEvent('Error:', event); });
+recognizeStream.on('close', function (event) { onEvent('Close:', event); });
 
 // Display events on the console.
 function onEvent(name, event) {
-    console.log(name, JSON.stringify(event, null, 2));
+  console.log(name, JSON.stringify(event, null, 2));
 };
 
 function resolveAfter3Seconds(x) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(x);
-      }, 3000);
-    });
-  }
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(x);
+    }, 3000);
+  });
+}
 
 /**
  * Cada vez que el cliente reciba un archivo de tipo audio, se le contestará con un mensaje
  */
 client.on('message', async msg => {
-    if (msg.hasMedia) {
-        const media = await msg.downloadMedia();
+  if (msg.hasMedia) {
+    const media = await msg.downloadMedia();
 
-        /**
-         * Transforma bin a audio
-         */
-        const buff = Buffer.from(media.data, 'base64');
-        fs.writeFileSync('audioGenereado.ogg', buff);
+    if (media.mimetype == "audio/ogg; codecs=opus") {
+      /**
+       * Transforma bin a audio
+       */
+      const buff = Buffer.from(media.data, 'base64');
+      fs.writeFileSync('audio/audioGenerado.ogg', buff);
+      console.log("[!] Audio generado");
 
-        if (media.mimetype == "audio/ogg; codecs=opus") {
+      /**
+       * Se ejecuta cuando pasan 3s
+       */
+      async function f1() {
+        await resolveAfter3Seconds(msg.reply(fs.createReadStream(process.env.AUDIO).pipe(recognizeStream)));
+        console.log("[!] Audio leído");
+        await resolveAfter3Seconds(msg.reply('No me mandéis audios, por favor'));
+      }
 
-            /**
-             * Se ejecuta cuando pasan 3s
-             */
-            async function f1() {
-                await resolveAfter3Seconds(msg.reply(fs.createReadStream('C:/Users/Sn4pe/Documents/Proyectos/bots/discord/proyecto_wadio/audioGenereado.ogg').pipe(recognizeStream)));
-                await resolveAfter3Seconds(msg.reply());
-                await resolveAfter3Seconds(msg.reply('No me mandéis audios, por favor'));
-              }
-             
-            f1();
-        }
+      f1();
     }
+  }
 });
