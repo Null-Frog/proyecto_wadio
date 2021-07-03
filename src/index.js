@@ -81,11 +81,11 @@ client.on('message', async msg => {
           model: 'es-ES_NarrowbandModel'
         };
 
-        var transcripcion;
+        var audioJSON;
 
         const transcribirAudio = speechToText.recognize(recognizeParams)
         .then(SpeechRecognitionResults => {
-          transcripcion = JSON.stringify(SpeechRecognitionResults);
+          audioJSON = JSON.stringify(SpeechRecognitionResults);
         })
         .catch(err =>{
           console.log('error', err);
@@ -93,7 +93,7 @@ client.on('message', async msg => {
 
         await resolveAfter3Seconds(transcribirAudio);
 
-        console.log(transcripcion);
+        console.log(audioJSON);
         console.log("[!] Audio leído");
       }
 
