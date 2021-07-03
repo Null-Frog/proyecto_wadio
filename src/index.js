@@ -73,22 +73,27 @@ client.on('message', async msg => {
        * Lee el archivo de audio
        */
       async function leerAudio() {
-        const transcribirMensaje = fs.createReadStream(process.env.AUDIO);
+        const leerAudio = fs.createReadStream(process.env.AUDIO);
 
         const recognizeParams = {
-          audio: transcribirMensaje,
+          audio: leerAudio,
           contentType: 'audio/ogg;codecs=opus',
+          model: 'es-ES_NarrowbandModel'
         };
 
-        const prueba = speechToText.recognize(recognizeParams)
+        var transcripcion;
+
+        const transcribirAudio = speechToText.recognize(recognizeParams)
         .then(SpeechRecognitionResults => {
-          console.log(JSON.stringify(SpeechRecognitionResults))
+          transcripcion = JSON.stringify(SpeechRecognitionResults);
         })
         .catch(err =>{
           console.log('error', err);
         });
 
-        await resolveAfter3Seconds(prueba);
+        await resolveAfter3Seconds(transcribirAudio);
+
+        console.log(transcripcion);
         console.log("[!] Audio leído");
       }
 
