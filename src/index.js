@@ -78,7 +78,8 @@ client.on('message', async msg => {
         const recognizeParams = {
           audio: leerAudio,
           contentType: 'audio/ogg;codecs=opus',
-          model: 'es-ES_NarrowbandModel'
+          model: 'es-ES_NarrowbandModel',
+          endOfPhraseSilenceTime: 120.0
         };
 
         var audioObject;
@@ -94,10 +95,11 @@ client.on('message', async msg => {
         });
 
         await resolveAfter3Seconds(transcribirAudio);
+
         mensajeAudio = audioObject.result.results[0].alternatives[0].transcript;
         fiabilidad = audioObject.result.results[0].alternatives[0].confidence;
-        console.log(mensajeAudio+"\n"+fiabilidad);
         console.log("[!] Audio leído");
+        msg.reply("[Transcripción de audio]\n\n"+mensajeAudio+"\n\n[Fiabilidad: "+fiabilidad+"]");
       }
 
       leerAudio();
