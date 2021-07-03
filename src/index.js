@@ -81,19 +81,22 @@ client.on('message', async msg => {
           model: 'es-ES_NarrowbandModel'
         };
 
-        var audioJSON;
+        var audioObject;
+        var mensajeAudio;
+        var fiabilidad;
 
         const transcribirAudio = speechToText.recognize(recognizeParams)
         .then(SpeechRecognitionResults => {
-          audioJSON = JSON.stringify(SpeechRecognitionResults);
+          audioObject = SpeechRecognitionResults;
         })
         .catch(err =>{
           console.log('error', err);
         });
 
         await resolveAfter3Seconds(transcribirAudio);
-
-        console.log(audioJSON);
+        mensajeAudio = audioObject.result.results[0].alternatives[0].transcript;
+        fiabilidad = audioObject.result.results[0].alternatives[0].confidence;
+        console.log(mensajeAudio+"\n"+fiabilidad);
         console.log("[!] Audio leído");
       }
 
