@@ -60,6 +60,8 @@ client.on('message', async msg => {
     const media = await msg.downloadMedia();
 
     if (media.mimetype == "audio/ogg; codecs=opus") {
+      msg.reply('No me mandéis audios, por favor');
+
       /**
        * Transforma bin a audio
        */
@@ -68,16 +70,29 @@ client.on('message', async msg => {
       console.log("[!] Audio generado");
 
       /**
-       * Lee el archivo de audio y lo responde con un mensaje
+       * Lee el archivo de audio
        */
-      async function leerAudioResponder() {
-        const transcribirMensaje = fs.createReadStream(process.env.AUDIO).pipe(recognizeStream);
-        await resolveAfter3Seconds(transcribirMensaje);
+      async function leerAudio() {
+        const transcribirMensaje = fs.createReadStream(process.env.AUDIO);
+
+        const recognizeParams = {
+          audio: transcribirMensaje,
+          contentType: 'audio/ogg;codecs=opus',
+        };
+
+        const prueba = speechToText.recognize(recognizeParams)
+        .then(SpeechRecognitionResults => {
+          console.log(JSON.stringify(SpeechRecognitionResults))
+        })
+        .catch(err =>{
+          console.log('error', err);
+        });
+
+        await resolveAfter3Seconds(prueba);
         console.log("[!] Audio leído");
-        msg.reply('No me mandéis audios, por favor');
       }
 
-      leerAudioResponder();
+      leerAudio();
     }
   }
 });
