@@ -56,7 +56,9 @@ function resolveAfter3Seconds(x) {
  * Cada vez que el cliente reciba un archivo de tipo audio, se le contestará con un mensaje
  */
 client.on('message', async msg => {
-  if (msg.hasMedia) {
+  let chat = await msg.getChat();
+
+  if (msg.hasMedia && !chat.isGroup) {
     const media = await msg.downloadMedia();
 
     if (media.mimetype == "audio/ogg; codecs=opus") {
