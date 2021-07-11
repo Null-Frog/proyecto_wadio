@@ -1,0 +1,32 @@
+@font-face {
+    font-family: robotoLight;
+    src: url(../fonts/RobotoSlab-Light.ttf);
+}
+
+@font-face {
+    font-family: robotoRegular;
+    src: url(../fonts/RobotoSlab-Regular.ttf);
+}
+
+body{
+    background-image: url(../img/whatsPattern.jpg);
+}
+
+h1{
+    text-align: center;
+    font-family: robotoRegular, Arial, Helvetica, sans-serif;
+    font-size: 4em;
+    margin-top: 1.5em;
+}
+
+#info{
+    font-family: robotoLight, Arial, Helvetica, sans-serif;
+    font-size: 1.7em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#info p{
+    margin-bottom: 12px;
+}
