@@ -11,6 +11,8 @@
     <script src="../js/jquery-3.6.0.min.js"></script>
     <!-- jQuery UI -->
     <script src="../js/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <!-- JS -->
+    <script src="../js/funcionalidad.js"></script>
     <!-- Styles -->
     <link rel="stylesheet" href="../css/styles.css">
 </head>
@@ -27,22 +29,31 @@
             </p>
             <ul>
                 <li>Introduce la frase de contestación al audio</li>
-                <li>Haz click en generar código QR</li>
+                <li>Activa la palanca para generar el código QR</li>
                 <li>Abre tu Whatsapp Web y escanéalo</li>
             </ul>
         </div>
 
-        <div id="frase">
+        <div id="fraseDiv">
             <!-- Div que contendrá un input para que el usuario escriba su frase y un botón para aplicarla -->
+            <input type="text" name="frase" placeholder="No me mandéis audios, por favor">
+            <button id="boton">Aplicar</button>
         </div>
 
-        <div id="codigoQR">
+        <div id="codigoDiv">
             <!-- Div que contrendrá un botón para generar el código QR -->
+            <input type="checkbox" name="switch" />
+
+            <div class="customcheck">
+                <div class="checkitem"></div>
+            </div>
         </div>
     </section>
 
     <footer>
-
+        <p>
+            nullfrogteam@gmail.com
+        </p>
     </footer>
 </body>
 

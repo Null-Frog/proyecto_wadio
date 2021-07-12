@@ -1,3 +1,8 @@
+*{
+    margin: 0px;
+    font-family: robotoLight, Arial, Helvetica, sans-serif;
+}
+
 @font-face {
     font-family: robotoLight;
     src: url(../fonts/RobotoSlab-Light.ttf);
@@ -17,10 +22,12 @@ h1{
     font-family: robotoRegular, Arial, Helvetica, sans-serif;
     font-size: 4em;
     margin-top: 1.5em;
+    color: #00bb2d;
+    text-shadow: 0 0 3px #ffffff;
 }
 
 #info{
-    font-family: robotoLight, Arial, Helvetica, sans-serif;
+    margin-top: 1.8em;
     font-size: 1.7em;
     display: flex;
     flex-direction: column;
@@ -29,4 +36,93 @@ h1{
 
 #info p{
     margin-bottom: 12px;
+}
+
+ul{
+    margin-top: 0.8em;
+}
+
+#fraseDiv{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 4.5em;
+}
+
+input[name="frase"]{
+    width: 18%;
+    border: 1px solid #0ebd0e;
+    background-color: transparent;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+input[name="frase"]:focus{
+    outline: none;
+    box-shadow: 0 0 5px #24da24 inset, 0 0 5px #24da24;
+}
+
+#codigoDiv{
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+button{
+    width: 125px;
+    font-size: 16px;
+}
+
+.botonAplicado{
+    color: #ffffff;
+    background-color: #00bb2d;
+    border-radius: 7px;
+    border-color: white;
+}
+
+/* Checkbox QR */
+input[name="switch"]{
+    display: none;
+}
+
+.customcheck {
+    width: 80px;
+    height: 20px;
+    border: 3px solid #bdbdbd;
+    border-radius: 20px;
+    background: #d8d8d8;
+}
+
+.checkitem{
+    width: 14px;
+    height: 14px;
+    border-radius: 16px;
+    border: 2px solid #484848;
+    background-color: #696969;
+    margin: 1px;
+    margin-left: 2px;
+    transition: all 0.5s ease;
+}
+
+.itemactive{
+    margin-left: 60px;
+    border: 2px solid #0ebd0e;
+    background-color: #24da24;
+}
+
+/* Footer */
+footer{
+  background-color: rgba(5, 15, 14, 0.582);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  height: 3em;
+}
+
+footer p{
+    margin-top: 15px;
+    font-size: 15px;
 }
