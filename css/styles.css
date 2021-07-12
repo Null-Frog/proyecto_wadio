@@ -147,3 +147,20 @@ footer p{
     margin-top: 15px;
     font-size: 15px;
 }
+
+/* Header */
+header{
+  background-color: rgba(5, 15, 14, 0.582);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  height: 3em;
+}
+
+header p{
+    margin-top: 15px;
+    font-size: 15px;
+}
