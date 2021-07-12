@@ -22,12 +22,33 @@ $(document).ready(function () {
   /**
    * Botón para aplicar la frase de respuesta
    */
-  $("#boton").click(function (e) { 
-    var item = $("#boton");
+  $("#botonAplicar").click(function (e) { 
+    var item = $("#botonAplicar");
     var inputFrase = $("[name='frase']"); 
 
     item.addClass("botonAplicado");
     item.text("Aplicada");
-    frase = inputFrase.val();
+
+    if(inputFrase.val() != ""){
+      frase = inputFrase.val();
+    }
+  });
+
+  /**
+   * Botón para resetear la frase de respuesta
+   */
+   $("#botonReset").click(function (e) { 
+    var item = $("#botonAplicar");
+
+    item.removeClass("botonAplicado");
+    item.text("Aplicar");
+    frase = "No me mandéis audios, por favor";
+  });
+
+  $("[name='frase']").focus(function (e) { 
+    var item = $("#botonAplicar"); 
+    
+    item.removeClass("botonAplicado");
+    item.text("Aplicar");
   });
 });

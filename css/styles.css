@@ -51,7 +51,7 @@ ul{
 
 input[name="frase"]{
     width: 18%;
-    border: 1px solid #0ebd0e;
+    border: 2px solid #0ebd0eb9;
     background-color: transparent;
     font-size: 18px;
     border-radius: 5px;
@@ -71,13 +71,33 @@ input[name="frase"]:focus{
 button{
     width: 125px;
     font-size: 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+button:hover{
+    transform: scale(1.1);
 }
 
 .botonAplicado{
     color: #ffffff;
     background-color: #00bb2d;
-    border-radius: 7px;
     border-color: white;
+}
+
+#botonReset{
+    color: #ffffff;
+    background-color: #f84447;
+    border-color: white;
+}
+
+li{
+    color: #00bb2d;
+}
+
+li span{
+    color: black;
 }
 
 /* Checkbox QR */
@@ -102,6 +122,7 @@ input[name="switch"]{
     margin: 1px;
     margin-left: 2px;
     transition: all 0.5s ease;
+    cursor: pointer;
 }
 
 .itemactive{
