@@ -10,8 +10,12 @@
     "whatsapp-web.js": "^1.12.6"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "babelify": "^10.0.0",
     "dotenv": "^10.0.0",
-    "nodemon": "^2.0.9"
+    "nodemon": "^2.0.9",
+    "tinyify": "^3.0.0"
   },
   "scripts": {
     "start": "node src/index.js",
