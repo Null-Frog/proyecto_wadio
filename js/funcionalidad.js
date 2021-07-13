@@ -39,10 +39,12 @@ $(document).ready(function () {
    */
    $("#botonReset").click(function (e) { 
     var item = $("#botonAplicar");
+    var inputFrase = $("[name='frase']"); 
 
     item.removeClass("botonAplicado");
     item.text("Aplicar");
     frase = "No me mandéis audios, por favor";
+    inputFrase.val("");
   });
 
   $("[name='frase']").focus(function (e) { 
