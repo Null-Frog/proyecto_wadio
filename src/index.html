@@ -17,6 +17,15 @@
     <script src="../js/funcionalidad.js"></script>
     <!-- Styles -->
     <link rel="stylesheet" href="../css/styles.css">
+    <!-- Inter-process communication -->
+    <script>
+        const electron = require('electron');
+        const ipcRenderer = electron.ipcRenderer;
+    
+        ipcRenderer.on('message', (event, data) => {
+          document.getElementById('message').innerHTML = data;
+        });
+      </script>
 </head>
 
 <body>
@@ -45,6 +54,7 @@
             <input type="text" name="frase" placeholder="No me mandéis audios, por favor">
             <button id="botonAplicar">Aplicar</button>
             <button id="botonReset">Reset</button>
+            <span id="message"></span>
         </div>
 
         <div id="codigoDiv">
