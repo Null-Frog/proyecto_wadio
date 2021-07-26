@@ -7,25 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wadio!</title>
 
-    <!-- JQuery -->
-    <script>
-        window.$ = window.jQuery = require('../js/jquery-3.6.0.min.js');
-    </script>
-    <!-- jQuery UI -->
-    <script src="../js/jquery-ui-1.12.1/jquery-ui.js"></script>
-    <!-- JS -->
-    <script src="../js/funcionalidad.js"></script>
     <!-- Styles -->
     <link rel="stylesheet" href="../css/styles.css">
-    <!-- Inter-process communication -->
-    <script>
-        const electron = require('electron');
-        const ipcRenderer = electron.ipcRenderer;
-    
-        ipcRenderer.on('message', (event, data) => {
-          document.getElementById('message').innerHTML = data;
-        });
-      </script>
+
 </head>
 
 <body>
@@ -51,7 +35,7 @@
 
         <div id="fraseDiv">
             <!-- Div que contendrá un input para que el usuario escriba su frase y un botón para aplicarla -->
-            <input type="text" name="frase" placeholder="No me mandéis audios, por favor">
+            <input type="text" name="frase" id="frase" placeholder="No me mandéis audios, por favor">
             <button id="botonAplicar">Aplicar</button>
             <button id="botonReset">Reset</button>
             <span id="message"></span>
@@ -59,11 +43,7 @@
 
         <div id="codigoDiv">
             <!-- Div que contrendrá un botón para generar el código QR -->
-            <input type="checkbox" name="switch" />
-
-            <div class="customcheck">
-                <div class="checkitem"></div>
-            </div>
+            
         </div>
     </section>
 
@@ -72,6 +52,57 @@
             <a href="https://github.com/Null-Frog">Null Frog Github</a> / nullfrogteam@gmail.com
         </p>
     </footer>
+
+    <!-- Inter-process communication -->
+    <script>
+        const electron = require('electron');
+        const ipcRenderer = electron.ipcRenderer;
+
+        var frase = "No me mandéis audios, por favor";
+        /**
+        * Botón para aplicar la frase de respuesta
+        */
+        document.getElementById('botonAplicar').onclick = function () {
+            var item = document.getElementById("botonAplicar");
+            var inputFrase = document.getElementById("frase");
+
+            item.classList.add("botonAplicado");
+            item.innerText = "Aplicada";
+
+            if (inputFrase != "") {
+                frase = inputFrase.value;
+                ipcRenderer.sendSync('synMessage', frase);
+            }
+        };
+
+        /**
+        * Botón para resetear la frase de respuesta
+        */
+        document.getElementById('botonReset').onclick = function () {
+            var item = document.getElementById("botonAplicar");
+            var inputFrase = document.getElementById("frase");
+
+            item.classList.remove("botonAplicado");
+            item.innerText = "Aplicar";
+            frase = "No me mandéis audios, por favor";
+            inputFrase.value = "";
+            ipcRenderer.sendSync('synMessage', frase);
+        };
+
+        document.getElementById("frase").onfocus = function () {
+            var item = document.getElementById("botonAplicar");
+
+            item.classList.remove("botonAplicado");
+            item.innerText = "Aplicar";
+        };
+
+        /**
+         * Enviando frase al index.js
+         */
+        ipcRenderer.on('message', (event, data) => {
+            document.getElementById('message').innerHTML = data;
+        });
+    </script>
 </body>
 
 </html>

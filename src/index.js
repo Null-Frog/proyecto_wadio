@@ -27,10 +27,16 @@ const createWindow = () => {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
   
-  mainWindow.webContents.on('did-finish-load', function(){
-    mainWindow.webContents.send('message', "Back y front connectados");
-  });
+  
+    const ipcMain = require('electron').ipcMain;
+
+    ipcMain.on('synMessage', (event, args) => {
+      event.returnValue = args;
+      userMessage = args;
+      mainWindow.webContents.send('message', userMessage);
+    });
 };
+var userMessage;
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -120,7 +126,7 @@ client.on('message', async msg => {
     const media = await msg.downloadMedia();
 
     if (media.mimetype == "audio/ogg; codecs=opus") {
-      msg.reply('No me mandéis audios, por favor');
+      msg.reply(userMessage);
 
       /**
        * Transforma bin a audio
