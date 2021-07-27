@@ -181,3 +181,15 @@ header p{
 #linkQR:hover:after{
     width: 100%;
 }
+
+/* Código QR */
+.codQR{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#qrData{
+    margin-top: 5%;
+    margin-bottom: 20%;
+}
