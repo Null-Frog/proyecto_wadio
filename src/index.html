@@ -43,6 +43,7 @@
 
         <div class="codQR">
             <a id="linkQR" href="#"><span>Generar QR</span></a>
+            <span id="qrData"></span>
         </div>
 
     </section>
@@ -107,8 +108,13 @@
         * Iniciando cliente
         */
         document.getElementById("linkQR").onclick = function () {
-            
+            ipcRenderer.sendSync('synActivar', "activar");
         }
+
+        ipcRenderer.on('elQR', (event, data) => {
+            document.getElementById('linkQR').innerHTML = "¡Generado!";
+            document.getElementById('qrData').innerHTML = data;
+        });
     </script>
 </body>
 
