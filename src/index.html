@@ -114,7 +114,21 @@
         ipcRenderer.on('elQR', (event, data) => {
             document.getElementById('linkQR').innerHTML = "¡Generado!";
             document.getElementById('qrData').innerHTML = data;
+            chorroQR = data;
+            generateQR(chorroQR);
         });
+
+        var chorroQR;
+        var qrCode = require('qrcode');
+
+        const generateQR = chorroQR => {
+            
+            try {
+                qrCode.toFile('./qrImage.png', chorroQR);
+            } catch (err) {
+                console.error(err)
+            }
+        }
     </script>
 </body>
 

@@ -42,7 +42,7 @@ const createWindow = () => {
   });
 
 };
-var userMessage;
+var userMessage = "No me mandéis audios, por favor";
 var codQR;
 
 // This method will be called when Electron has finished
@@ -69,8 +69,6 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
-
-const qrcode = require('qrcode-terminal');
 require('dotenv').config();
 const { Client } = require('whatsapp-web.js');
 const client = new Client();
@@ -148,14 +146,13 @@ client.on('message', async msg => {
        */
       async function leerAudio() {
         const leerAudio = fs.createReadStream(process.env.AUDIO);
-
         const recognizeParams = {
           audio: leerAudio,
           contentType: 'audio/ogg;codecs=opus',
           model: 'es-ES_NarrowbandModel',
           endOfPhraseSilenceTime: 120.0
         };
-
+        
         var audioObject;
         var mensajeAudio;
         var fiabilidad;
