@@ -35,6 +35,7 @@ const createWindow = () => {
       userMessage = args;
       mainWindow.webContents.send('message', userMessage);
     });
+
 };
 var userMessage;
 

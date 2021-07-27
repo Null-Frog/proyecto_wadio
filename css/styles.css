@@ -133,3 +133,51 @@ header p{
     margin-top: 15px;
     font-size: 15px;
 }
+
+/* Botón QR */
+.codQR{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+#linkQR{
+    display: block;
+    border-radius: 5px;
+    width: 400px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-family: robotoRegular, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: #333;
+    border: 2px solid #333;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    transition: all .35s;
+  }
+  
+#linkQR span{
+    position: relative;
+    z-index: 2;
+}
+  
+#linkQR:after{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #00bb2d;
+    transition: all .35s;
+}
+  
+#linkQR:hover{
+    color: #fff;
+}
+  
+#linkQR:hover:after{
+    width: 100%;
+}

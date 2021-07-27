@@ -28,8 +28,8 @@
             </p>
             <ul>
                 <li><span>Introduce la frase de contestación al audio</span></li>
-                <li><span>Activa la palanca para generar el código QR</span></li>
-                <li><span>Abre tu Whatsapp Web y escanéalo</span></li>
+                <li><span>Haz click en "Generar QR"</span></li>
+                <li><span>Escanéalo con Whatsapp Web</span></li>
             </ul>
         </div>
 
@@ -41,10 +41,10 @@
             <span id="message"></span>
         </div>
 
-        <div id="codigoDiv">
-            <!-- Div que contrendrá un botón para generar el código QR -->
-            
+        <div class="codQR">
+            <a id="linkQR" href="#"><span>Generar QR</span></a>
         </div>
+
     </section>
 
     <footer>
@@ -102,6 +102,13 @@
         ipcRenderer.on('message', (event, data) => {
             document.getElementById('message').innerHTML = data;
         });
+
+        /**
+        * Iniciando cliente
+        */
+        document.getElementById("linkQR").onclick = function () {
+            
+        }
     </script>
 </body>
 
