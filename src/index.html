@@ -98,13 +98,6 @@
         };
 
         /**
-         * Enviando frase al index.js
-         */
-        ipcRenderer.on('message', (event, data) => {
-            document.getElementById('message').innerHTML = data;
-        });
-
-        /**
         * Iniciando cliente
         */
         document.getElementById("linkQR").onclick = function () {
@@ -113,14 +106,18 @@
 
         ipcRenderer.on('elQR', (event, data) => {
             document.getElementById('linkQR').innerHTML = "¡Generado!";
-            document.getElementById('qrData').innerHTML = data;
             chorroQR = data;
             generateQR(chorroQR);
+            
+            document.getElementById('qrData').appendChild(elem);
+            
         });
 
         var chorroQR;
         var qrCode = require('qrcode');
-
+        var elem = document.createElement("img");
+        elem.src = process.env.IMAGE;
+        
         const generateQR = chorroQR => {
             
             try {

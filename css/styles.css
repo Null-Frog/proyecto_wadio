@@ -55,11 +55,13 @@ input[name="frase"]{
     background-color: rgba(255, 255, 255, 0.719);
     font-size: 18px;
     border-radius: 5px;
+    transition: all .30s;
 }
 
 input[name="frase"]:focus{
     outline: none;
     box-shadow: 0 0 5px #24da24 inset, 0 0 5px #24da24;
+    transition: all .30s;
 }
 
 #codigoDiv{
