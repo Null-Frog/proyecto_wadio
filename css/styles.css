@@ -170,12 +170,16 @@ header p{
     position: relative;
     transition: all .35s;
     animation-name: fondoApp;
-    animation-duration: 15s;
+    animation-duration: 12s;
   }
   
 #linkQR span{
     position: relative;
     z-index: 2;
+}
+
+#linkQR a{
+    cursor: pointer;
 }
   
 #linkQR:after{

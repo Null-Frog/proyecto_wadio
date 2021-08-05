@@ -106,7 +106,7 @@
         }
 
         ipcRenderer.on('elQR', (event, data) => {
-            document.getElementById('linkQR').innerHTML = "¡Generado!";
+            document.getElementById('linkQR').innerHTML = "Generando...";
             chorroQR = data;
             generateQR(chorroQR);
             
@@ -125,12 +125,12 @@
                     const fetched = await getImg();
                     elem.src = await '../qrImage.png';
                     await document.getElementById('qrData').appendChild(fetched);
+                    document.getElementById('linkQR').innerHTML = "¡Generado!";
                 } catch (error) {
                     console.log(error);
                 }
             }
             fetching();
-            
         });
             
         var chorroQR;
