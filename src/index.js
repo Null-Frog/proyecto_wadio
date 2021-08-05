@@ -90,9 +90,9 @@ const { IamAuthenticator } = require('ibm-watson/auth');
 
 const speechToText = new SpeechToTextV1({
   authenticator: new IamAuthenticator({
-    apikey: //apikey
+    apikey: //'apikey'
   }),
-  serviceUrl: //service url
+  serviceUrl: //'serviceurl'
 });
 
 const params = {

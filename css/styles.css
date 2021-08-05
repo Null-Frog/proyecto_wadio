@@ -10,8 +10,7 @@
 *{
     margin: 0px;
     font-family: robotoLight, Arial, Helvetica, sans-serif;
-    animation-name: fondoApp;
-    animation-duration: 2s;
+    cursor: default;
 }
 
 @font-face {
@@ -67,6 +66,7 @@ input[name="frase"]{
     font-size: 18px;
     border-radius: 5px;
     transition: all .30s;
+    cursor: text;
 }
 
 input[name="frase"]:focus{
@@ -169,6 +169,8 @@ header p{
     text-align: center;
     position: relative;
     transition: all .35s;
+    animation-name: fondoApp;
+    animation-duration: 15s;
   }
   
 #linkQR span{
@@ -189,6 +191,7 @@ header p{
   
 #linkQR:hover{
     color: #fff;
+    cursor: pointer;
 }
   
 #linkQR:hover:after{
