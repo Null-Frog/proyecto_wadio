@@ -11,7 +11,7 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 1000,
     height: 600,
-    icon: __dirname + '/icon.png',
+    icon: 'whatsapp-bots.ico',
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -25,8 +25,7 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-
+  // mainWindow.webContents.openDevTools();
 
   const ipcMain = require('electron').ipcMain;
 
@@ -69,7 +68,7 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
-require('dotenv').config();
+// require('dotenv').config();
 const { Client } = require('whatsapp-web.js');
 const client = new Client();
 
@@ -91,9 +90,9 @@ const { IamAuthenticator } = require('ibm-watson/auth');
 
 const speechToText = new SpeechToTextV1({
   authenticator: new IamAuthenticator({
-    apikey: process.env.APIKEY
+    apikey: //apikey
   }),
-  serviceUrl: process.env.URL
+  serviceUrl: //service url
 });
 
 const params = {
@@ -145,7 +144,7 @@ client.on('message', async msg => {
        * Lee el archivo de audio
        */
       async function leerAudio() {
-        const leerAudio = fs.createReadStream(process.env.AUDIO);
+        const leerAudio = fs.createReadStream('./audio/audioGenerado.ogg');
         const recognizeParams = {
           audio: leerAudio,
           contentType: 'audio/ogg;codecs=opus',

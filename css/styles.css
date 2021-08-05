@@ -1,6 +1,17 @@
+@keyframes fondoApp{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 *{
     margin: 0px;
     font-family: robotoLight, Arial, Helvetica, sans-serif;
+    animation-name: fondoApp;
+    animation-duration: 2s;
 }
 
 @font-face {
@@ -194,4 +205,8 @@ header p{
 #qrData{
     margin-top: 5%;
     margin-bottom: 20%;
+}
+
+#rojo{
+    color: red;
 }

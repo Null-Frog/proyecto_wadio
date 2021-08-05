@@ -92,3 +92,4 @@ package-lock.json
 .env
 audioGenerado.ogg
 qrImage.png
+dist/

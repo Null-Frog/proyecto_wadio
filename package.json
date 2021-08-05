@@ -1,15 +1,33 @@
 {
   "name": "proyecto_wadio",
-  "productName": "proyecto_wadio",
+  "productName": "Wadio!",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Bot de WhatsApp que transcribe un audio a texto y lo contesta con un mensaje personalizado",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "build-installer": "electron-builder"
+  },
+  "build": {
+    "appId": "cool-app",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "whatsapp-botsIN.ico"
+    },
+    "nsis": {
+      "installerIcon": "whatsapp-botsIN.ico",
+      "uninstallerIcon": "whatsapp-botsUN.ico",
+      "uninstallDisplayName": "Wadio!",
+      "license": "license.txt",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "keywords": [],
   "author": {
@@ -52,12 +70,12 @@
     "whatsapp-web.js": "^1.12.6"
   },
   "devDependencies": {
-    "dotenv": "^10.0.0",
     "@electron-forge/cli": "^6.0.0-beta.58",
     "@electron-forge/maker-deb": "^6.0.0-beta.58",
     "@electron-forge/maker-rpm": "^6.0.0-beta.58",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.58",
     "@electron-forge/maker-zip": "^6.0.0-beta.58",
-    "electron": "13.1.7"
+    "electron": "13.1.7",
+    "electron-builder": "^22.11.7"
   }
 }

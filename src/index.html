@@ -24,12 +24,13 @@
 
         <div id="info">
             <p>
-                Ejecuta la aplicación en tres sencillos pasos:
+                Para iniciar la aplicación:
             </p>
             <ul>
                 <li><span>Introduce la frase de contestación al audio</span></li>
-                <li><span>Haz click en "Generar QR"</span></li>
+                <li><span>Haz click en "Generar QR" y espera unos segundos</span></li>
                 <li><span>Escanéalo con Whatsapp Web</span></li>
+                <li><span id="rojo">(!)</span><span> Si esperas demasiado sin escanear, el código caducará y tendrás que volver a iniciar la aplicación</span></li>
             </ul>
         </div>
 
@@ -122,7 +123,7 @@
             async function fetching() {
                 try {
                     const fetched = await getImg();
-                    elem.src = await process.env.IMAGE;
+                    elem.src = await '../qrImage.png';
                     await document.getElementById('qrData').appendChild(fetched);
                 } catch (error) {
                     console.log(error);
